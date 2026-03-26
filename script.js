@@ -614,10 +614,12 @@ function addToCart(productId) {
 
 // Update cart display
 function updateCart() {
-    cartItems.innerHTML = '';
-    let total = 0;
-    
-    cart.forEach(item => {
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cartItems.innerHTML = '';
+let total = 0;
+
+cart.forEach(item => {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
@@ -625,7 +627,7 @@ function updateCart() {
             <div class="cart-item-info">
                 <h4>${item.name}</h4>
                 <p>₹${item.price.toLocaleString('en-IN')}</p>
-                ${item.selectedSize ? `<p class="cart-item-size">Size: ${item.selectedSize}</p>` : ''}
+                ${item.size ? `<p class="cart-item-size">Size: ${item.size}</p>` : ''}
                 <div class="cart-item-quantity">
                     <button onclick="updateQuantity(${item.id}, -1)">-</button>
                     <span>${item.quantity}</span>
@@ -638,8 +640,7 @@ function updateCart() {
         `;
         cartItems.appendChild(cartItem);
         total += item.price * item.quantity;
-    });
-    
+    }); 
     cartTotal.textContent = total.toLocaleString('en-IN');
     cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
 }
@@ -738,26 +739,35 @@ function createProductCard(product) {
 }
 // Add to cart
 function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    const existingItem = cart.find(item => item.id === productId);
-    
-    if (existingItem) {
-        existingItem.quantity++;
-    } else {
-        cart.push({
-            ...product,
-            quantity: 1
-        });
-    }
-    
-    updateCartUI();
-    showNotification('Product added to cart!');
+const product = products.find(p => p.id === productId);
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const existingItem = cart.find(item => item.id === productId);
+
+if (existingItem) {
+existingItem.quantity++;
+} else {
+cart.push({
+...product,
+quantity: 1
+});
 }
 
+localStorage.setItem("cart", JSON.stringify(cart));
+
+updateCartUI();
+showNotification('Product added to cart!');
+}
 // Remove from cart
 function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    updateCartUI();
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart = cart.filter(item => item.id !== productId);
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+updateCartUI();
 }
 
 // Update quantity
