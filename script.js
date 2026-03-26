@@ -590,6 +590,37 @@ const cartItems = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
 const paymentTotal = document.getElementById('paymentTotal');
 
+// Display products on page
+function displayProducts() {
+    const productGrid = document.getElementById('productGrid');
+    if (!productGrid) return;
+    
+    productGrid.innerHTML = '';
+    
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" onclick="viewProduct(${product.id})">
+            <div class="product-info">
+                <h3>${product.name}</h3>
+                <p>₹${product.price.toLocaleString('en-IN')}</p>
+                <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+            </div>
+        `;
+        productGrid.appendChild(productCard);
+    });
+}
+
+// View product details
+function viewProduct(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        localStorage.setItem('selectedProduct', JSON.stringify(product));
+        window.location.href = 'product.html';
+    }
+}
+
 // Update existing addToCart function to work with new system
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
@@ -614,12 +645,10 @@ function addToCart(productId) {
 
 // Update cart display
 function updateCart() {
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-cartItems.innerHTML = '';
-let total = 0;
-
-cart.forEach(item => {
+    cartItems.innerHTML = '';
+    let total = 0;
+    
+    cart.forEach(item => {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
@@ -627,7 +656,7 @@ cart.forEach(item => {
             <div class="cart-item-info">
                 <h4>${item.name}</h4>
                 <p>₹${item.price.toLocaleString('en-IN')}</p>
-                ${item.size ? `<p class="cart-item-size">Size: ${item.size}</p>` : ''}
+                ${item.selectedSize ? `<p class="cart-item-size">Size: ${item.selectedSize}</p>` : ''}
                 <div class="cart-item-quantity">
                     <button onclick="updateQuantity(${item.id}, -1)">-</button>
                     <span>${item.quantity}</span>
@@ -640,7 +669,8 @@ cart.forEach(item => {
         `;
         cartItems.appendChild(cartItem);
         total += item.price * item.quantity;
-    }); 
+    });
+    
     cartTotal.textContent = total.toLocaleString('en-IN');
     cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
 }
@@ -737,37 +767,10 @@ function createProductCard(product) {
 
     return card;
 }
-// Add to cart
-function addToCart(productId) {
-const product = products.find(p => p.id === productId);
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-const existingItem = cart.find(item => item.id === productId);
-
-if (existingItem) {
-existingItem.quantity++;
-} else {
-cart.push({
-...product,
-quantity: 1
-});
-}
-
-localStorage.setItem("cart", JSON.stringify(cart));
-
-updateCartUI();
-showNotification('Product added to cart!');
-}
 // Remove from cart
 function removeFromCart(productId) {
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-cart = cart.filter(item => item.id !== productId);
-
-localStorage.setItem("cart", JSON.stringify(cart));
-
-updateCartUI();
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
 }
 
 // Update quantity
@@ -1293,4 +1296,29 @@ style.textContent = `
 document.head.appendChild(style);
 
 let selectedProduct = null;
+
+// Update cart count display
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    if (cartCount) {
+        cartCount.textContent = totalItems;
+    }
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    // Display products on home page
+    displayProducts();
+    
+    // Load cart from localStorage
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+    
+    // Update cart count
+    updateCartCount();
+});
+
 
