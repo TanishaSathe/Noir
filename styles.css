@@ -1069,12 +1069,6 @@ body {
     color: #333;
 }
 
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
 .product-card {
     background: white;
     border-radius: 10px;
@@ -2016,8 +2010,7 @@ body {
         font-size: 2rem;
     }
 
-    .category-grid,
-    .product-grid {
+    .category-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
     }
@@ -2029,10 +2022,6 @@ body {
     }
 
     .category-grid,
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-
     .modal-content {
         width: 95%;
         margin: 10% auto;
@@ -2048,13 +2037,6 @@ body {
 .nav-link {
   font-weight: 500;
   letter-spacing: 1px;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  padding: 60px 20px;
 }
 
 .product-card {
