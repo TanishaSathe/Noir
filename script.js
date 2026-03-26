@@ -220,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Clear cart and close modal
                 cart = [];
+                localStorage.setItem("cart", JSON.stringify(cart));
                 updateCartUI();
                 document.getElementById('paymentForm').reset();
                 paymentModal.style.display = 'none';
@@ -577,8 +578,8 @@ document.addEventListener('DOMContentLoaded', function() {
     renderProducts();
 });
 
-// Shopping cart
-let cart = [];
+// Shopping cart - use localStorage for persistence
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // DOM Elements
 const productGrid = document.getElementById('productGrid');
@@ -603,6 +604,9 @@ function addToCart(productId) {
             selectedSize: 'M' // Default size
         });
     }
+    
+    // Save to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
     
     updateCart();
     showNotification(`${product.name} added to cart!`);
@@ -648,6 +652,8 @@ function updateQuantity(productId, change) {
         if (item.quantity <= 0) {
             removeFromCart(productId);
         } else {
+            // Save to localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
             updateCart();
         }
     }
@@ -656,6 +662,8 @@ function updateQuantity(productId, change) {
 // Remove from cart
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
+    // Save to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
     updateCart();
 }
 
@@ -997,6 +1005,7 @@ document.getElementById('paymentForm').addEventListener('submit', function(e) {
         
         // Reset cart and forms
         cart = [];
+        localStorage.setItem("cart", JSON.stringify(cart));
         updateCartUI();
         document.getElementById('paymentForm').reset();
         paymentModal.style.display = 'none';
