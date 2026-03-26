@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .sizes button.selected {
+            background-color: #333;
+            color: white;
+            border-color: #333;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item img {
+            margin-right: 15px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -73,10 +89,10 @@
 
     <div class="sizes">
       <p>Select Size:</p>
-      <button>S</button>
-      <button>M</button>
-      <button>L</button>
-      <button>XL</button>
+      <button onclick="selectSize(this, 'S')">S</button>
+      <button onclick="selectSize(this, 'M')">M</button>
+      <button onclick="selectSize(this, 'L')">L</button>
+      <button onclick="selectSize(this, 'XL')">XL</button>
     </div>
 
     <button class="add-btn" onclick="addToCart()">Add to Cart</button>
@@ -273,6 +289,7 @@
 
 <script>
   const product = JSON.parse(localStorage.getItem("selectedProduct"));
+  let selectedSize = 'M'; // Default size
 
   document.getElementById("productImage").src = product.image;
   document.getElementById("productName").innerText = product.name;
@@ -281,21 +298,32 @@
   // ✅ ADD THIS LINE HERE
   document.getElementById("productDescription").innerText = product.description || "";
 
+  // Size selection function
+  function selectSize(button, size) {
+    // Remove selected class from all size buttons
+    const sizeButtons = document.querySelectorAll('.sizes button');
+    sizeButtons.forEach(btn => btn.classList.remove('selected'));
+    
+    // Add selected class to clicked button
+    button.classList.add('selected');
+    selectedSize = size;
+  }
+
   function addToCart() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     
-    // Check if product already exists in cart
-    const existingItemIndex = cart.findIndex(item => item.id === product.id);
+    // Check if product already exists in cart with same size
+    const existingItemIndex = cart.findIndex(item => item.id === product.id && item.selectedSize === selectedSize);
     
     if (existingItemIndex > -1) {
-      // Update quantity if already exists
+      // Update quantity if already exists with same size
       cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1;
     } else {
-      // Add new product with quantity and default size
+      // Add new product with quantity and selected size
       cart.push({
         ...product,
         quantity: 1,
-        selectedSize: 'M' // Default size like home page
+        selectedSize: selectedSize
       });
     }
     
@@ -305,7 +333,7 @@
     updateCartCount();
     
     // Show success message
-    showNotification("Product added to cart!");
+    showNotification(`Product added to cart in size ${selectedSize}!`);
     
     // Optional: Show cart modal
     // showCart();
@@ -460,12 +488,12 @@
   // Update quantity function
   function updateQuantity(productId, change) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const item = cart.find(item => item.id === productId);
+    const itemIndex = cart.findIndex(item => item.id === productId);
     
-    if (item) {
-      item.quantity = (item.quantity || 1) + change;
-      if (item.quantity <= 0) {
-        cart = cart.filter(item => item.id !== productId);
+    if (itemIndex !== -1) {
+      cart[itemIndex].quantity = (cart[itemIndex].quantity || 1) + change;
+      if (cart[itemIndex].quantity <= 0) {
+        cart.splice(itemIndex, 1);
       }
       localStorage.setItem("cart", JSON.stringify(cart));
       updateCartCount();
