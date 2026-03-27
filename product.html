@@ -342,7 +342,7 @@
     showNotification(`Product added to cart in size ${selectedSize}!`);
     
     // Optional: Show cart modal
-    showCart();
+    // showCart();
   }
   
   // Update cart count function
@@ -489,15 +489,6 @@
     if (cartTotalElement) {
       cartTotalElement.textContent = total.toLocaleString('en-IN');
     }
-  }
-  
-  // Remove from cart function
-  function removeFromCart(productId) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart = cart.filter(item => item.id !== productId);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-    loadCartItems(); // Refresh cart modal
   }
   
   // Auth modal functions
