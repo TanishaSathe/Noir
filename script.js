@@ -769,6 +769,8 @@ function createProductCard(product) {
 // Remove from cart
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
+    // Save to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
     updateCartUI();
 }
 
@@ -780,6 +782,8 @@ function updateQuantity(productId, change) {
         if (item.quantity <= 0) {
             removeFromCart(productId);
         } else {
+            // Save to localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
             updateCartUI();
         }
     }
@@ -1319,6 +1323,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update cart count
     updateCartCount();
 });
-
-
 
