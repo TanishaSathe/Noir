@@ -59,6 +59,8 @@ body {
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: opacity 0.3s ease;
+    padding: 8px 12px;
+    cursor: pointer;
 }
 
 .nav-link:hover {
