@@ -176,10 +176,9 @@ body {
 }
 
 .product-card {
-    background: #fff;
-    border: 1px solid #000;
+    background: white;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     cursor: pointer;
 }
 
@@ -890,10 +889,8 @@ body {
 /* Enhanced Product Cards */
 .product-card {
     background: white;
-    border-radius: 12px;
     overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
     position: relative;
 }
 
@@ -2059,7 +2056,6 @@ body {
   width: 100%;
   height: 380px;
   object-fit: cover;
-  border-radius: 12px;
 }
 
 .product-card h3 {
