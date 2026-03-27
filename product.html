@@ -289,7 +289,7 @@
 
 <script>
   const product = JSON.parse(localStorage.getItem("selectedProduct"));
-  let selectedSize = 'M'; // Default size
+  let selectedSize = ''; // No default size - user must select
 
   document.getElementById("productImage").src = product.image;
   document.getElementById("productName").innerText = product.name;
@@ -310,6 +310,12 @@
   }
 
   function addToCart() {
+    // Check if size is selected
+    if (!selectedSize || selectedSize === '') {
+      showNotification('Please select a size!');
+      return;
+    }
+    
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     
     // Check if product already exists in cart with same size
@@ -467,12 +473,12 @@
           <p>₹${item.price.toLocaleString('en-IN')}</p>
           ${item.selectedSize ? `<p style="color: #666;">Size: ${item.selectedSize}</p>` : ''}
           <div class="cart-item-quantity" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-            <button onclick="updateQuantity('${item.id}', -1)" style="background: #f0f0f0; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer;">-</button>
+            <button onclick="updateQuantity(${item.id}, -1)" style="background: #f0f0f0; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer;">-</button>
             <span>${item.quantity || 1}</span>
-            <button onclick="updateQuantity('${item.id}', 1)" style="background: #f0f0f0; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer;">+</button>
+            <button onclick="updateQuantity(${item.id}, 1)" style="background: #f0f0f0; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer;">+</button>
           </div>
         </div>
-        <button onclick="removeFromCart('${item.id}')" style="background: #e74c3c; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+        <button onclick="removeFromCart(${item.id})" style="background: #e74c3c; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
           <i class="fas fa-trash"></i>
         </button>
       `;
@@ -704,4 +710,3 @@
 
 </body>
 </html>
-   
