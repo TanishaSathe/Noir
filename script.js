@@ -401,30 +401,6 @@ const products = [
         image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
         category: "women",
         description: "Stylish midi skirt"
-    },
-    {
-        id: 7,
-        name: "Designer Handbag",
-        price: 2499,
-        image: "https://images.unsplash.com/photo-1558769132-c5e6b8abe6a?w=400",
-        category: "accessories",
-        description: "Elegant designer handbag"
-    },
-    {
-        id: 8,
-        name: "Fashion Scarf",
-        price: 1299,
-        image: "https://images.unsplash.com/photo-1558769132-c5e6b8abe6a?w=400",
-        category: "accessories",
-        description: "Soft fashion scarf"
-    },
-    {
-        id: 9,
-        name: "Luxury Silk Scarf",
-        price: 1899,
-        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
-        category: "accessories",
-        description: "Premium silk scarf with elegant design"
     }
 ];
 
@@ -1323,5 +1299,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update cart count
     updateCartCount();
 });
-
 
