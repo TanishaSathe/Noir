@@ -60,52 +60,117 @@
     <section class="login-section">
         <div class="login-container">
             <div class="login-card">
-                <div class="login-header">
-                    <h1>Welcome Back</h1>
-                    <p>Login to your Noir et Blanc account</p>
+                <!-- Tab Navigation -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchTab('login')">Login</button>
+                    <button class="auth-tab" onclick="switchTab('register')">Register</button>
                 </div>
                 
-                <form class="login-form" onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="Enter your email" required>
+                <!-- Login Form -->
+                <div id="loginForm" class="auth-form active">
+                    <div class="login-header">
+                        <h1>Welcome Back</h1>
+                        <p>Login to your Noir et Blanc account</p>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter your password" required>
+                    <form class="login-form" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="remember-me">
+                                <input type="checkbox" name="remember">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        
+                        <button type="submit" class="login-btn">Login</button>
+                        
+                        <div class="login-divider">
+                            <span>OR</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button type="button" class="social-btn google-btn">
+                                <i class="fab fa-google"></i>
+                                Continue with Google
+                            </button>
+                            <button type="button" class="social-btn facebook-btn">
+                                <i class="fab fa-facebook-f"></i>
+                                Continue with Facebook
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Register Form -->
+                <div id="registerForm" class="auth-form">
+                    <div class="login-header">
+                        <h1>Create Account</h1>
+                        <p>Join Noir et Blanc today</p>
                     </div>
                     
-                    <div class="form-options">
-                        <label class="remember-me">
-                            <input type="checkbox" name="remember">
-                            <span class="checkmark"></span>
-                            Remember me
-                        </label>
-                        <a href="#" class="forgot-password">Forgot password?</a>
-                    </div>
-                    
-                    <button type="submit" class="login-btn">Login</button>
-                    
-                    <div class="login-divider">
-                        <span>OR</span>
-                    </div>
-                    
-                    <div class="social-login">
-                        <button type="button" class="social-btn google-btn">
-                            <i class="fab fa-google"></i>
-                            Continue with Google
-                        </button>
-                        <button type="button" class="social-btn facebook-btn">
-                            <i class="fab fa-facebook-f"></i>
-                            Continue with Facebook
-                        </button>
-                    </div>
-                    
-                    <div class="signup-link">
-                        <p>Don't have an account? <a href="register.html">Sign up</a></p>
-                    </div>
-                </form>
+                    <form class="register-form" onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label for="regName">Full Name</label>
+                            <input type="text" id="regName" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="regEmail">Email Address</label>
+                            <input type="email" id="regEmail" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="regPhone">Phone Number</label>
+                            <input type="tel" id="regPhone" placeholder="+91 98765 43210" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" id="regPassword" placeholder="Create a password" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Confirm Password</label>
+                            <input type="password" id="regConfirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="remember-me">
+                                <input type="checkbox" name="terms" required>
+                                <span class="checkmark"></span>
+                                I agree to the Terms & Conditions
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="register-btn">Create Account</button>
+                        
+                        <div class="login-divider">
+                            <span>OR</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button type="button" class="social-btn google-btn">
+                                <i class="fab fa-google"></i>
+                                Continue with Google
+                            </button>
+                            <button type="button" class="social-btn facebook-btn">
+                                <i class="fab fa-facebook-f"></i>
+                                Continue with Facebook
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -152,6 +217,22 @@
     <script src="auth.js"></script>
     
     <script>
+        // Switch between Login and Register tabs
+        function switchTab(tab) {
+            // Remove active class from all tabs and forms
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            
+            // Add active class to selected tab and form
+            if (tab === 'login') {
+                document.querySelector('.auth-tab:first-child').classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.querySelector('.auth-tab:last-child').classList.add('active');
+                document.getElementById('registerForm').classList.add('active');
+            }
+        }
+        
         // Handle login form submission
         function handleLogin(event) {
             event.preventDefault();
@@ -175,6 +256,43 @@
             }
         }
         
+        // Handle register form submission
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const phone = document.getElementById('regPhone').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!');
+                return;
+            }
+            
+            // Store user data (you can enhance this)
+            const userData = {
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
+                registeredAt: new Date().toISOString()
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(userData));
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            // Show success message
+            showNotification('Registration successful! Redirecting...');
+            
+            // Redirect to home page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+        
         // Check if user is already logged in
         window.addEventListener('load', () => {
             if (localStorage.getItem('isLoggedIn') === 'true') {
@@ -187,3 +305,4 @@
     </script>
 </body>
 </html>
+
