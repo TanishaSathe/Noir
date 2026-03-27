@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Noir et Blanc</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="nav-logo">
+                    <h2>Noir et Blanc</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#womens-wear" class="nav-link">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#admin" class="nav-link" onclick="goToAdmin()">
+                        <i class="fas fa-cog"></i> Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="search.html" class="nav-link">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#cart" class="nav-link cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-header">
+                <h1>Search Products</h1>
+                <p>Find your perfect fashion items</p>
+            </div>
+            
+            <div class="search-form">
+                <div class="search-input-group">
+                    <input type="text" id="searchInput" placeholder="Search for products..." class="search-input-large">
+                    <button type="button" class="search-btn-large" onclick="performSearch()">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </div>
+                
+                <div class="search-filters">
+                    <h3>Filter Results</h3>
+                    <div class="filter-group">
+                        <label for="categoryFilter">Category</label>
+                        <select id="categoryFilter" class="filter-select-large">
+                            <option value="all">All Categories</option>
+                            <option value="women">Women's Wear</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="priceFilter">Price Range</label>
+                        <select id="priceFilter" class="filter-select-large">
+                            <option value="all">All Prices</option>
+                            <option value="0-2000">Under ₹2,000</option>
+                            <option value="2000-5000">₹2,000 - ₹5,000</option>
+                            <option value="5000+">Above ₹5,000</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sortBy">Sort By</label>
+                        <select id="sortBy" class="filter-select-large">
+                            <option value="featured">Shop</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="search-results">
+                <h2>Search Results</h2>
+                <div class="product-grid" id="searchResults">
+                    <!-- Search results will be displayed here -->
+                    <div class="no-results">
+                        <p>Start typing to search for products...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Noir et Blanc</h3>
+                    <p>Your destination for premium women's fashion</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="#orders">Orders</a></li>
+                        <li><a href="#wishlist">Wishlist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section" id="contact">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@noiretblanc.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Noir et Blanc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        // Load products from script.js
+        let products = [];
+        let filteredProducts = [];
+        
+        // Initialize search page
+        window.addEventListener('load', () => {
+            // Load products from localStorage or use default
+            const savedProducts = localStorage.getItem('products');
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            } else {
+                // Fallback products if not in localStorage
+                products = [
+                    {
+                        id: 1,
+                        name: "Classic White Shirt",
+                        price: 2999,
+                        image: "https://images.unsplash.com/photo-1596755066808-5a7d9d5e5a?w=400",
+                        category: "women",
+                        description: "Elegant white shirt"
+                    },
+                    {
+                        id: 2,
+                        name: "Black Evening Dress",
+                        price: 4999,
+                        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+                        category: "women",
+                        description: "Stylish black evening dress"
+                    },
+                    {
+                        id: 3,
+                        name: "Beige Blazer",
+                        price: 5999,
+                        image: "https://images.unsplash.com/photo-1558769132-c5e6b8abe6a?w=400",
+                        category: "women",
+                        description: "Professional beige blazer"
+                    },
+                    {
+                        id: 4,
+                        name: "Floral Summer Dress",
+                        price: 3499,
+                        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+                        category: "women",
+                        description: "Beautiful floral summer dress"
+                    },
+                    {
+                        id: 5,
+                        name: "Casual Top",
+                        price: 1999,
+                        image: "https://images.unsplash.com/photo-1596755066808-5a7d9d5e5a?w=400",
+                        category: "women",
+                        description: "Comfortable casual top"
+                    },
+                    {
+                        id: 6,
+                        name: "Midi Skirt",
+                        price: 3999,
+                        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+                        category: "women",
+                        description: "Stylish midi skirt"
+                    }
+                ];
+            }
+            
+            filteredProducts = [...products];
+            displaySearchResults();
+        });
+        
+        // Perform search
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const priceFilter = document.getElementById('priceFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
+            
+            // Filter products
+            filteredProducts = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+                const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
+                const matchesPrice = filterByPrice(product.price, priceFilter);
+                
+                return matchesSearch && matchesCategory && matchesPrice;
+            });
+            
+            // Sort products
+            sortProducts(filteredProducts, sortBy);
+            
+            // Display results
+            displaySearchResults();
+        }
+        
+        // Filter by price
+        function filterByPrice(price, filter) {
+            if (filter === 'all') return true;
+            if (filter === '0-2000') return price <= 2000;
+            if (filter === '2000-5000') return price >= 2000 && price <= 5000;
+            if (filter === '5000+') return price > 5000;
+            return true;
+        }
+        
+        // Sort products
+        function sortProducts(productsToSort, sortBy) {
+            switch(sortBy) {
+                case 'price-low':
+                    return productsToSort.sort((a, b) => a.price - b.price);
+                case 'price-high':
+                    return productsToSort.sort((a, b) => b.price - a.price);
+                case 'name':
+                    return productsToSort.sort((a, b) => a.name.localeCompare(b.name));
+                default:
+                    return productsToSort;
+            }
+        }
+        
+        // Display search results
+        function displaySearchResults() {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (filteredProducts.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <p>No products found matching your criteria.</p>
+                    </div>
+                `;
+            } else {
+                resultsContainer.innerHTML = filteredProducts.map(product => `
+                    <div class="product-card" onclick="viewProduct(${product.id})">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <p>₹${product.price.toLocaleString('en-IN')}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // View product details
+        function viewProduct(productId) {
+            window.location.href = `product.html?id=${productId}`;
+        }
+        
+        // Handle search input changes
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+        document.getElementById('categoryFilter').addEventListener('change', performSearch);
+        document.getElementById('priceFilter').addEventListener('change', performSearch);
+        document.getElementById('sortBy').addEventListener('change', performSearch);
+    </script>
+</body>
+</html>
