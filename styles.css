@@ -294,8 +294,7 @@ body {
 .footer-section p {
     font-size: 14px;
     font-weight: 300;
-    color: #000;
-    opacity: 0.8;
+    color: #666;
     line-height: 1.8;
 }
 
@@ -308,7 +307,7 @@ body {
 }
 
 .footer-section ul li a {
-    color: #000;
+    color: #666;
     text-decoration: none;
     font-size: 14px;
     font-weight: 300;
