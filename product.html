@@ -342,7 +342,7 @@
     showNotification(`Product added to cart in size ${selectedSize}!`);
     
     // Optional: Show cart modal
-    // showCart();
+    showCart();
   }
   
   // Update cart count function
@@ -488,22 +488,6 @@
     
     if (cartTotalElement) {
       cartTotalElement.textContent = total.toLocaleString('en-IN');
-    }
-  }
-  
-  // Update quantity function
-  function updateQuantity(productId, change) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const itemIndex = cart.findIndex(item => item.id === productId);
-    
-    if (itemIndex !== -1) {
-      cart[itemIndex].quantity = (cart[itemIndex].quantity || 1) + change;
-      if (cart[itemIndex].quantity <= 0) {
-        cart.splice(itemIndex, 1);
-      }
-      localStorage.setItem("cart", JSON.stringify(cart));
-      updateCartCount();
-      loadCartItems(); // Refresh cart modal
     }
   }
   
