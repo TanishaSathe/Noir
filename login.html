@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Noir et Blanc</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="nav-logo">
+                    <h2>Noir et Blanc</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#womens-wear" class="nav-link">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#admin" class="nav-link" onclick="goToAdmin()">
+                        <i class="fas fa-cog"></i> Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="document.getElementById('searchInput').focus()">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#cart" class="nav-link cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <h1>Welcome Back</h1>
+                    <p>Login to your Noir et Blanc account</p>
+                </div>
+                
+                <form class="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Login</button>
+                    
+                    <div class="login-divider">
+                        <span>OR</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button type="button" class="social-btn google-btn">
+                            <i class="fab fa-google"></i>
+                            Continue with Google
+                        </button>
+                        <button type="button" class="social-btn facebook-btn">
+                            <i class="fab fa-facebook-f"></i>
+                            Continue with Facebook
+                        </button>
+                    </div>
+                    
+                    <div class="signup-link">
+                        <p>Don't have an account? <a href="register.html">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Noir et Blanc</h3>
+                    <p>Your destination for premium women's fashion</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="#orders">Orders</a></li>
+                        <li><a href="#wishlist">Wishlist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section" id="contact">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@noiretblanc.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Noir et Blanc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    
+    <script>
+        // Handle login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation (you can enhance this)
+            if (email && password) {
+                // Store login status
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                
+                // Show success message
+                showNotification('Login successful! Redirecting...');
+                
+                // Redirect to home page after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+        }
+        
+        // Check if user is already logged in
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                showNotification('You are already logged in!');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>
