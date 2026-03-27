@@ -1078,7 +1078,6 @@ body {
 
 .product-card {
     background: white;
-    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
@@ -2091,7 +2090,6 @@ body {
 
 .modal-content img {
   width: 100%;
-  border-radius: 10px;
   margin-bottom: 10px;
 }
 
@@ -2108,7 +2106,6 @@ body {
 
 .product-img {
   width: 400px;
-  border-radius: 10px;
 }
 
 .product-details {
@@ -2130,7 +2127,6 @@ body {
 
 .product-left img {
   width: 500px;
-  border-radius: 10px;
 }
 
 .product-right {
