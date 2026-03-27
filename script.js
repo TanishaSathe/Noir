@@ -605,7 +605,6 @@ function displayProducts() {
             <div class="product-info">
                 <h3>${product.name}</h3>
                 <p>₹${product.price.toLocaleString('en-IN')}</p>
-                <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
             </div>
         `;
         productGrid.appendChild(productCard);
