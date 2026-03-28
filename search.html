@@ -177,8 +177,17 @@
             }, 500); // Increased delay
         });
         
-        // Perform search
+        // Enhanced search function with product check
         function performSearch() {
+            // Ensure products are loaded
+            if (products.length === 0) {
+                products = window.products || [];
+                if (products.length === 0) {
+                    console.error('No products loaded!');
+                    return;
+                }
+            }
+            
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const categoryFilter = document.getElementById('categoryFilter').value;
             const priceFilter = document.getElementById('priceFilter').value;
@@ -186,17 +195,26 @@
             
             console.log('Searching for:', searchTerm);
             console.log('Available products:', products);
+            console.log('Products count:', products.length);
             
-            // Filter products
-            filteredProducts = products.filter(product => {
-                const matchesSearch = product.name.toLowerCase().includes(searchTerm);
-                const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
-                const matchesPrice = filterByPrice(product.price, priceFilter);
-                
-                return matchesSearch && matchesCategory && matchesPrice;
-            });
+            // If search term is empty, show all products
+            if (searchTerm === '') {
+                filteredProducts = [...products];
+            } else {
+                // Filter products by name
+                filteredProducts = products.filter(product => {
+                    const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+                    const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
+                    const matchesPrice = filterByPrice(product.price, priceFilter);
+                    
+                    console.log(`Product: ${product.name}, Matches: ${matchesSearch}`);
+                    
+                    return matchesSearch && matchesCategory && matchesPrice;
+                });
+            }
             
             console.log('Filtered results:', filteredProducts);
+            console.log('Results count:', filteredProducts.length);
             
             // Sort products
             sortProducts(filteredProducts, sortBy);
