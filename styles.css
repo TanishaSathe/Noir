@@ -139,7 +139,42 @@ body {
     opacity: 0.8;
 }
 
-/* Ensure Collection link stays as Collection */
+/* Hamburger menu items */
+.hamburger-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 200px;
+    box-shadow: 0 10px 27px rgba(0,0,0,0.1);
+    z-index: 1000;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.hamburger-menu .nav-link {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+}
+
+.hamburger-menu .nav-link:hover {
+    opacity: 0.6;
+}
+
+/* Show hamburger menu on mobile */
+@media (max-width: 768px) {
+    .hamburger.active .hamburger-menu {
+        display: flex;
+    }
+}
 .nav-item:nth-child(2) .nav-link::after {
     content: "Collection" !important;
 }
