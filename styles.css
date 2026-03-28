@@ -1410,7 +1410,30 @@ body {
     }
 }
 
-/* Extra small phones (very small screens) */
+/* Force mobile product images to be larger and extend to edges */
+@media (max-width: 480px) {
+    .product-grid .product-card img {
+        height: 280px !important;
+        width: 100% !important;
+        object-fit: cover !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .product-grid {
+        padding: 0 2px !important;
+        gap: 4px !important;
+    }
+    
+    .product-grid .product-card {
+        border: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+}
 @media (max-width: 360px) {
     .product-grid {
         grid-template-columns: 1fr;
