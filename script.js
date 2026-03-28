@@ -822,19 +822,16 @@ function showNotification(message) {
 // Mobile menu toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-const mobileNav = document.querySelector('.mobile-nav');
 
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
-    mobileNav.classList.toggle('active');
 });
 
 // Close mobile menu when clicking on a link
-document.querySelectorAll('.mobile-nav-link').forEach(n => n.addEventListener('click', () => {
+document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
-    mobileNav.classList.remove('active');
 }));
 
 // Cart modal
