@@ -921,6 +921,24 @@ body {
     .nav-menu.active {
         left: 0;
         display: flex !important;
+        flex-direction: column !important;
+        position: fixed !important;
+        background: #fff !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 20px 0 !important;
+    }
+    
+    /* Show all navigation items when menu is active */
+    .nav-menu.active .nav-item {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Hide hamburger when menu is active */
+    .nav-menu.active .hamburger {
+        display: none !important;
     }
     
     /* Force hamburger to work on mobile - override everything */
