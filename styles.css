@@ -891,29 +891,48 @@ body {
         display: flex !important;
     }
     
-    /* Ensure hamburger is clickable */
-    .hamburger {
-        display: flex !important;
-        cursor: pointer !important;
-        z-index: 1001 !important;
-        position: relative !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-    
-    .hamburger .bar {
-        display: block !important;
-        width: 25px !important;
-        height: 3px !important;
-        margin: 3px 0 !important;
-        transition: 0.3s !important;
-        background: #000 !important;
-        border-radius: 0 !important;
-    }
-    
-    .hamburger:hover .bar {
-        background: #333 !important;
+    /* Force hamburger to work on mobile - override everything */
+    @media (max-width: 768px) {
+        .hamburger {
+            display: flex !important;
+            cursor: pointer !important;
+            z-index: 9999 !important;
+            position: relative !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 30px !important;
+            height: 25px !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 5px !important;
+        }
+        
+        .hamburger .bar {
+            display: block !important;
+            width: 25px !important;
+            height: 2px !important;
+            margin: 4px 0 !important;
+            background: #000 !important;
+            border-radius: 0 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .hamburger:hover .bar {
+            background: #333 !important;
+        }
+        
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(6px) rotate(45deg) !important;
+        }
+        
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0 !important;
+        }
+        
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg) !important;
+        }
     }
     
     .nav-link {
