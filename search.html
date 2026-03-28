@@ -21,7 +21,7 @@
                     <a href="index.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#womens-wear" class="nav-link">Categories</a>
+                    <a href="index.html#products" class="nav-link">Collection</a>
                 </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
@@ -284,6 +284,105 @@
         document.getElementById('categoryFilter').addEventListener('change', performSearch);
         document.getElementById('priceFilter').addEventListener('change', performSearch);
         document.getElementById('sortBy').addEventListener('change', performSearch);
+        
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+        }
+        
+        // Cart modal
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartModal = document.querySelector('.cart-modal');
+        const closeBtn = document.querySelector('.close');
+        
+        if (cartIcon) {
+            cartIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (cartModal) {
+                    cartModal.style.display = 'block';
+                    displayCartItems();
+                }
+            });
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                if (cartModal) {
+                    cartModal.style.display = 'none';
+                }
+            });
+        }
+        
+        function displayCartItems() {
+            const cartItemsContainer = document.querySelector('.cart-items');
+            if (!cartItemsContainer) return;
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+            } else {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p>₹${item.price.toLocaleString('en-IN')}</p>
+                            <p>Size: ${item.selectedSize || 'M'}</p>
+                            <div class="quantity-controls">
+                                <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="remove-btn">Remove</button>
+                    </div>
+                `).join('');
+            }
+            
+            updateCartTotal();
+        }
+        
+        function updateCartTotal() {
+            const totalElement = document.querySelector('.cart-total h3');
+            if (totalElement) {
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                totalElement.textContent = `Total: ₹${total.toLocaleString('en-IN')}`;
+            }
+        }
+        
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    displayCartItems();
+                    updateCartCount();
+                }
+            }
+        }
+        
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCartItems();
+            updateCartCount();
+        }
+        
+        // Initialize cart on page load
+        updateCartCount();
+        
+        // Admin function
+        function goToAdmin() {
+            window.location.href = 'admin.html';
+        }
     </script>
 </body>
 </html>
