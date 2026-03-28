@@ -47,7 +47,7 @@
                     </a>
                 </li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" onclick="toggleMobileMenu()">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -203,4 +203,15 @@
     <script src="database.js"></script>
     <script src="script.js"></script>
     
+    <script>
+        // Direct mobile menu toggle function
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+    </script>
 </body>
+</html>
