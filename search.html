@@ -168,8 +168,13 @@
                 // Load products from main script
                 products = window.products || [];
                 filteredProducts = [...products];
+                
+                // Debug: Check if products loaded
+                console.log('Products loaded:', products.length);
+                console.log('Products:', products);
+                
                 displaySearchResults();
-            }, 100);
+            }, 500); // Increased delay
         });
         
         // Perform search
@@ -178,6 +183,9 @@
             const categoryFilter = document.getElementById('categoryFilter').value;
             const priceFilter = document.getElementById('priceFilter').value;
             const sortBy = document.getElementById('sortBy').value;
+            
+            console.log('Searching for:', searchTerm);
+            console.log('Available products:', products);
             
             // Filter products
             filteredProducts = products.filter(product => {
@@ -188,11 +196,18 @@
                 return matchesSearch && matchesCategory && matchesPrice;
             });
             
+            console.log('Filtered results:', filteredProducts);
+            
             // Sort products
             sortProducts(filteredProducts, sortBy);
             
             // Display results
             displaySearchResults();
+        }
+        
+        // Search button click handler
+        function searchProducts() {
+            performSearch();
         }
         
         // Filter by price
