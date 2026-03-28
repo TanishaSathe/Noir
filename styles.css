@@ -843,6 +843,13 @@ body {
         transform: translateY(-8px) rotate(-45deg);
     }
     
+    /* Show navigation items on mobile */
+    .nav-item:nth-child(4),
+    .nav-item:nth-child(5),
+    .nav-item:nth-child(6) {
+        display: block !important;
+    }
+    
     .nav-link {
         font-size: 14px;
         letter-spacing: 1px;
