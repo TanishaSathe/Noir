@@ -146,6 +146,24 @@ body {
     cursor: pointer;
 }
 
+/* Show hamburger on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex !important;
+        cursor: pointer !important;
+        z-index: 9999 !important;
+        position: relative !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 30px !important;
+        height: 25px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 5px !important;
+    }
+}
+
 .bar {
     width: 25px;
     height: 2px;
