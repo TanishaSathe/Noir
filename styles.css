@@ -843,19 +843,28 @@ body {
         transform: translateY(-8px) rotate(-45deg);
     }
     
-    /* Hide navigation items on mobile, show only when menu is active */
-    .nav-item:nth-child(4),
-    .nav-item:nth-child(5),
-    .nav-item:nth-child(6),
+    /* Keep specific navigation items always visible on mobile */
+    .nav-item:nth-child(5),  /* Login */
+    .nav-item:nth-child(6) { /* Search */
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Cart symbol always visible */
     .nav-item:nth-child(7) {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Hide only admin in mobile menu */
+    .nav-item:nth-child(4) {
         display: none !important;
     }
     
-    /* Show navigation items when hamburger menu is active */
-    .nav-menu.active .nav-item:nth-child(4),
-    .nav-menu.active .nav-item:nth-child(5),
-    .nav-menu.active .nav-item:nth-child(6),
-    .nav-menu.active .nav-item:nth-child(7) {
+    /* Show admin when menu is active */
+    .nav-menu.active .nav-item:nth-child(4) {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
