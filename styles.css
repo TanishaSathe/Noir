@@ -189,13 +189,38 @@ body {
     font-weight: 200 !important;
     letter-spacing: 1px !important;
 }
-/* Hamburger Menu */
+/* Hamburger Menu - always visible on mobile */
 .hamburger {
-    display: flex;
+    display: none;
     flex-direction: column;
     cursor: pointer;
     position: relative;
     z-index: 1001;
+}
+
+/* Force hamburger visible on mobile screens */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex !important;
+        cursor: pointer !important;
+        z-index: 9999 !important;
+        position: relative !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 30px !important;
+        height: 25px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 5px !important;
+    }
+}
+
+/* Show hamburger on all small screens */
+@media (max-width: 480px) {
+    .hamburger {
+        display: flex !important;
+    }
 }
 
 .hamburger .bar {
