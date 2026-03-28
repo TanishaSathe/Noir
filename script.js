@@ -828,10 +828,14 @@ hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-// Close mobile menu when clicking on a link
+// Close mobile menu when clicking on navigation links (except essential symbols)
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    // Don't close menu for login, search, cart - keep them accessible
+    const href = n.getAttribute('href');
+    if (href !== 'login.html' && href !== 'search.html' && href !== '#cart') {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }
 }));
 
 // Cart modal
