@@ -163,10 +163,13 @@
         let filteredProducts = [];
         
         window.addEventListener('load', () => {
-            // Load products from main script
-            products = window.products || [];
-            filteredProducts = [...products];
-            displaySearchResults();
+            // Wait for script.js to load completely
+            setTimeout(() => {
+                // Load products from main script
+                products = window.products || [];
+                filteredProducts = [...products];
+                displaySearchResults();
+            }, 100);
         });
         
         // Perform search
