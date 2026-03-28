@@ -162,66 +162,9 @@
         let products = [];
         let filteredProducts = [];
         
-        // Initialize search page
         window.addEventListener('load', () => {
-            // Load products from localStorage or use default
-            const savedProducts = localStorage.getItem('products');
-            if (savedProducts) {
-                products = JSON.parse(savedProducts);
-            } else {
-                // Fallback products if not in localStorage
-                products = [
-                    {
-                        id: 1,
-                        name: "Classic White Shirt",
-                        price: 2999,
-                        image: "https://images.unsplash.com/photo-1596755066808-5a7d9d5e5a?w=400",
-                        category: "women",
-                        description: "Elegant white shirt"
-                    },
-                    {
-                        id: 2,
-                        name: "Black Evening Dress",
-                        price: 4999,
-                        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
-                        category: "women",
-                        description: "Stylish black evening dress"
-                    },
-                    {
-                        id: 3,
-                        name: "Beige Blazer",
-                        price: 5999,
-                        image: "https://images.unsplash.com/photo-1558769132-c5e6b8abe6a?w=400",
-                        category: "women",
-                        description: "Professional beige blazer"
-                    },
-                    {
-                        id: 4,
-                        name: "Floral Summer Dress",
-                        price: 3499,
-                        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
-                        category: "women",
-                        description: "Beautiful floral summer dress"
-                    },
-                    {
-                        id: 5,
-                        name: "Casual Top",
-                        price: 1999,
-                        image: "https://images.unsplash.com/photo-1596755066808-5a7d9d5e5a?w=400",
-                        category: "women",
-                        description: "Comfortable casual top"
-                    },
-                    {
-                        id: 6,
-                        name: "Midi Skirt",
-                        price: 3999,
-                        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
-                        category: "women",
-                        description: "Stylish midi skirt"
-                    }
-                ];
-            }
-            
+            // Load products from main script
+            products = window.products || [];
             filteredProducts = [...products];
             displaySearchResults();
         });
