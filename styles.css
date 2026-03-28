@@ -871,48 +871,6 @@ body {
         margin: 10px 0;
     }
     
-    .mobile-nav {
-        display: none;
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background: #fff;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-        padding: 20px 0;
-        z-index: 1000;
-    }
-    
-    .mobile-nav-menu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .mobile-nav-item {
-        margin: 15px 0;
-    }
-    
-    .mobile-nav-link {
-        display: block;
-        text-decoration: none;
-        color: #000;
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-        font-weight: 200;
-        font-size: 16px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        padding: 15px;
-        transition: opacity 0.3s ease;
-    }
-    
-    .mobile-nav-link:hover {
-        opacity: 0.6;
-    }
-    
     .hamburger {
         display: flex;
     }
