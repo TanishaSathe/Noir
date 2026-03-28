@@ -1314,12 +1314,24 @@ body {
     
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
-        padding: 0 5px;
-        gap: 8px;
+        padding: 0 2px;
+        gap: 4px;
+    }
+    
+    .product-card {
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
     }
     
     .product-card img {
-        height: 200px;
+        height: 280px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0;
+        margin: 0;
     }
     
     .product-info {
