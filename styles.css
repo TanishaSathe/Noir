@@ -876,6 +876,7 @@ body {
     }
     
     .nav-menu {
+        display: none;
         position: fixed;
         left: -100%;
         top: 70px;
@@ -887,6 +888,22 @@ body {
         box-shadow: 0 10px 27px rgba(0,0,0,0.05);
         padding: 20px 0;
         z-index: 1000;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
     
     .nav-menu.active {
