@@ -848,6 +848,8 @@ body {
     .nav-item:nth-child(5),
     .nav-item:nth-child(6) {
         display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .nav-link {
