@@ -139,7 +139,21 @@ body {
     opacity: 0.8;
 }
 
-/* Hamburger Menu */
+/* Ensure Collection link stays as Collection */
+.nav-item:nth-child(2) .nav-link::after {
+    content: "Collection" !important;
+}
+
+.nav-item:nth-child(2) .nav-link {
+    font-size: 0 !important;
+}
+
+.nav-item:nth-child(2) .nav-link::before {
+    content: "Collection" !important;
+    font-size: 14px !important;
+    font-weight: 200 !important;
+    letter-spacing: 1px !important;
+}
 .hamburger {
     display: none;
     flex-direction: column;
