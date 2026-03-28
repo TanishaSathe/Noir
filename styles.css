@@ -888,7 +888,24 @@ body {
     
     .nav-menu.active {
         left: 0;
-        display: flex;
+        display: flex !important;
+    }
+    
+    /* Ensure hamburger is clickable */
+    .hamburger {
+        display: flex !important;
+        cursor: pointer !important;
+        z-index: 1001 !important;
+        position: relative !important;
+    }
+    
+    .hamburger .bar {
+        display: block !important;
+        width: 25px !important;
+        height: 3px !important;
+        margin: 5px auto !important;
+        transition: 0.3s !important;
+        background: #000 !important;
     }
     
     .nav-link {
