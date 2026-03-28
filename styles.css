@@ -1082,9 +1082,9 @@ body {
     }
     
     .product-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         padding: 0 10px;
-        gap: 15px;
+        gap: 10px;
     }
     
     .product-card img {
