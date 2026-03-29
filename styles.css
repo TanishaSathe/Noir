@@ -1,4 +1,4 @@
- {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -174,9 +174,6 @@ body {
     .hamburger.active .hamburger-menu {
         display: flex;
     }
-}
-.nav-item:nth-child(2) .nav-link::after {
-    content: "Collection" !important;
 }
 
 /* Make Home font same as Collection font */
