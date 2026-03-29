@@ -176,13 +176,23 @@ body {
     }
 }
 
-/* Make Home and Collection fonts consistent */
-.nav-item:nth-child(1) .nav-link,
+/* Make Home font exactly like Collection font */
+.nav-item:nth-child(1) .nav-link {
+    font-size: 14px !important;
+    font-weight: 200 !important;
+    letter-spacing: 1px !important;
+    font-family: 'Helvetica Neue', Arial, sans-serif !important;
+    text-transform: none !important;
+    color: #000 !important;
+}
+
 .nav-item:nth-child(2) .nav-link {
     font-size: 14px !important;
     font-weight: 200 !important;
     letter-spacing: 1px !important;
     font-family: 'Helvetica Neue', Arial, sans-serif !important;
+    text-transform: none !important;
+    color: #000 !important;
 }
 /* Hamburger Menu - hidden on desktop, visible on mobile */
 .hamburger {
