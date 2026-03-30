@@ -363,6 +363,16 @@
         // Initialize cart on page load
         updateCartCount();
         
+        // Real-time search - trigger search on input
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    performSearch();
+                });
+            }
+        });
+        
         // Mobile menu toggle
         function toggleMobileMenu() {
             const hamburger = document.querySelector('.hamburger');
