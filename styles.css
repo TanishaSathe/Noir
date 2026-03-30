@@ -194,51 +194,36 @@ body {
     text-transform: none !important;
     color: #000 !important;
 }
-/* Hamburger Menu - hidden on desktop, visible on mobile */
+/* Hamburger Menu - Completely Removed */
 .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    position: relative;
-    z-index: 1001;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
-/* Show hamburger only on mobile/tablet screens */
+.hamburger-menu {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Remove all hamburger-related styles */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
-        z-index: 9999 !important;
-        cursor: pointer !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 30px !important;
-        height: 25px !important;
-        background: transparent !important;
-        border: none !important;
-        padding: 5px !important;
-    }
-    
-    .hamburger .bar {
-        display: block !important;
-        width: 25px !important;
-        height: 3px !important;
-        background: #000 !important;
-        margin: 3px 0 !important;
-        transition: 0.3s !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 }
 
-/* Force hamburger on phone screens */
 @media (max-width: 480px) {
     .hamburger {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        z-index: 9999 !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 }
 
