@@ -7,6 +7,34 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script>
+        // Simple Admin Authentication
+        function checkAdminAccess() {
+            const isLoggedIn = localStorage.getItem('adminLoggedIn');
+            if (!isLoggedIn) {
+                // Show login prompt
+                const username = prompt('Enter admin username:');
+                const password = prompt('Enter admin password:');
+                
+                // Simple credentials (you can change these)
+                if (username === 'admin' && password === 'admin123') {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    localStorage.setItem('adminUser', username);
+                } else {
+                    alert('Invalid credentials! Redirecting to home...');
+                    window.location.href = 'index.html';
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        // Check access on page load
+        if (!checkAdminAccess()) {
+            // Stop loading if access denied
+            document.body.innerHTML = '<h1>Access Denied</h1>';
+        }
+    </script>
 </head>
 <body class="admin-body">
     <!-- Admin Navigation -->
@@ -444,6 +472,8 @@
 
         function logoutAdmin() {
             if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('adminLoggedIn');
+                localStorage.removeItem('adminUser');
                 window.location.href = 'index.html';
             }
         }
