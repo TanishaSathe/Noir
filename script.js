@@ -678,74 +678,40 @@ function updateWishlistButtons() {
         }
     });
 }
-// Enhanced product rendering
+// Render products
 function renderProducts() {
     const productGrid = document.getElementById('productGrid');
+    if (!productGrid) return;
+    
     productGrid.innerHTML = '';
     
     filteredProducts.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.innerHTML = `
-            <div class="product-actions">
-                <button class="quick-view-btn" onclick="quickView(${product.id})">👁</button>
-                <button class="wishlist-btn" onclick="toggleWishlist(${product.id})" data-product-id="${product.id}">
-                    ${wishlist.includes(product.id) ? '❤️' : '🤍'}
-                </button>
-            </div>
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
-                ${product.price > 3000 ? '<div class="product-badge">Premium</div>' : ''}
-            </div>
-            <div class="product-info">
-                <h3>${product.name}</h3>
-                <div class="product-price">
-                    ₹${product.price.toLocaleString('en-IN')}
-                    ${product.price > 3000 ? `<span class="original-price">₹${Math.round(product.price * 1.2).toLocaleString('en-IN')}</span>` : ''}
-                </div>
-                <p>${product.description}</p>
-                <div class="product-sizes">
-                    ${product.category === 'women' ? ['S', 'M', 'L', 'XL'].map(size => 
-                        `<button class="size-option" onclick="selectSize(this, ${product.id}, '${size}')">${size}</button>`
-                    ).join('') : ''}
-                </div>
-                <button class="add-to-cart" onclick="addToCart(${product.id})">
-                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                </button>
-            </div>
-        `;
-        
+        const productCard = createProductCard(product);
         productGrid.appendChild(productCard);
     });
-    
-    updateWishlistButtons();
 }
 
-// Quick view functionality
-function quickView(productId) {
-    const product = products.find(p => p.id === productId);
-    // Create quick view modal (you can implement this)
-    alert(`Quick view: ${product.name} - ₹${product.price.toLocaleString('en-IN')}`);
-}
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
 
-// Size selection
-function selectSize(element, productId, size) {
-    // Remove selected class from siblings
-    element.parentElement.querySelectorAll('.size-option').forEach(btn => {
-        btn.classList.remove('selected');
-    });
-    element.classList.add('selected');
-}
+    card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="product-info">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="product-price">₹${product.price.toFixed(2)}</div>
+        </div>
+    `;
 
-// Initialize filters and search
-document.addEventListener('DOMContentLoaded', function() {
-    // Set up search input
-    document.getElementById('searchInput').addEventListener('input', searchProducts);
-    
-    // Initialize with all products
-    filteredProducts = [...products];
-    renderProducts();
-});
+    // ✅ ADD CLICK HERE (IMPORTANT)
+    card.onclick = () => {
+        localStorage.setItem("selectedProduct", JSON.stringify(product));
+        window.location.href = "product.html";
+    };
+
+    return card;
+}
 
 // Shopping cart - use localStorage for persistence
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -905,36 +871,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartUI();
 });
 
-// Render products
-function renderProducts() {
-    productGrid.innerHTML = '';
-    products.forEach(product => {
-        const productCard = createProductCard(product);
-        productGrid.appendChild(productCard);
-    });
-}
-
-function createProductCard(product) {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-
-    card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}">
-        <div class="product-info">
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <div class="product-price">₹${product.price.toFixed(2)}</div>
-        </div>
-    `;
-
-    // ✅ ADD CLICK HERE (IMPORTANT)
-    card.onclick = () => {
-  localStorage.setItem("selectedProduct", JSON.stringify(product));
-  window.location.href = "product.html";
-};
-
-    return card;
-}
 // Remove from cart
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
