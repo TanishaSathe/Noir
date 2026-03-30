@@ -289,13 +289,6 @@ body {
     }
 }
 
-/* Show hamburger on all small screens */
-@media (max-width: 480px) {
-    .hamburger {
-        display: flex !important;
-    }
-}
-
 .hamburger .bar {
     width: 25px;
     height: 2px;
@@ -1514,57 +1507,7 @@ body {
         padding: 15px !important;
     }
 }
-/* AGGRESSIVE MOBILE FIXES - Override everything */
-@media (max-width: 480px) {
-    /* Force product images larger */
-    img.product-image,
-    .product-card img,
-    .products img {
-        height: 280px !important;
-        width: 100% !important;
-        object-fit: cover !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        max-width: 100% !important;
-    }
-    
-    /* Force grid spacing */
-    .product-grid {
-        padding: 0 2px !important;
-        gap: 4px !important;
-        margin: 0 !important;
-    }
-    
-    /* Force product cards */
-    .product-card {
-        border: none !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-    }
-    
-    /* Force hamburger visible */
-    .hamburger {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
-        z-index: 9999 !important;
-        cursor: pointer !important;
-    }
-    
-    .hamburger .bar {
-        display: block !important;
-        width: 25px !important;
-        height: 3px !important;
-        background: #000 !important;
-        margin: 3px 0 !important;
-    }
-}
-
-/* Turn Black Functionality & Minimalist Style */
+/* Extra small phones (very small screens) */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
