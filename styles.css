@@ -1528,7 +1528,112 @@ body {
     }
 }
 
-/* Extra small phones (very small screens) */
+/* Turn Black Theme Enhancements */
+body {
+    background: #000;
+    color: #fff;
+}
+
+/* Dark theme for main sections */
+.hero, .products, .footer {
+    background: #000;
+    color: #fff;
+}
+
+/* Navigation - Turn Black style */
+.navbar {
+    background: #000;
+    border-bottom: 1px solid #333;
+}
+
+.nav-logo h2 {
+    color: #fff;
+}
+
+.nav-link {
+    color: #fff !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #666 !important;
+}
+
+/* Product cards - Turn Black style */
+.product-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    border-color: #666;
+    transform: translateY(-2px);
+}
+
+.product-info h3 {
+    color: #fff;
+}
+
+.product-info p {
+    color: #ccc;
+}
+
+/* Buttons - Turn Black style */
+.add-to-cart, .login-btn, .search-btn-large {
+    background: #fff;
+    color: #000;
+    border: 1px solid #fff;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart:hover, .login-btn:hover, .search-btn-large:hover {
+    background: #000;
+    color: #fff;
+    border-color: #666;
+}
+
+/* Search input - Turn Black style */
+.search-input-large {
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+.search-input-large::placeholder {
+    color: #666;
+}
+
+/* Cart modal - Turn Black style */
+.cart-modal {
+    background: #000;
+    color: #fff;
+}
+
+.modal-content {
+    background: #111;
+    border: 1px solid #333;
+}
+
+/* Footer - Turn Black style */
+.footer {
+    background: #000;
+    border-top: 1px solid #333;
+}
+
+.footer h3, .footer h4 {
+    color: #fff;
+}
+
+.footer a {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #fff;
+}
 @media (max-width: 360px) {
     .product-grid {
         grid-template-columns: 1fr;
