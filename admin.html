@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chic Boutique Admin Dashboard</title>
+    <title>Noir et Blanc Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="admin-body">
     <!-- Admin Navigation -->
     <nav class="admin-nav">
         <div class="admin-container">
             <div class="admin-logo">
-                <h2>Chic Boutique Admin</h2>
+                <h2>Noir et Blanc Admin</h2>
             </div>
             <div class="admin-user">
                 <span id="adminUser">Admin</span>
@@ -48,6 +48,408 @@
                 <div class="stat-card">
                     <div class="stat-icon">
                         <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalRevenue">₹0</h3>
+                        <p>Total Revenue</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalProducts">30</h3>
+                        <p>Total Products</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Tabs -->
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="showTab('orders')">
+                    <i class="fas fa-shopping-cart"></i> Orders
+                </button>
+                <button class="admin-tab" onclick="showTab('products')">
+                    <i class="fas fa-box"></i> Products
+                </button>
+                <button class="admin-tab" onclick="showTab('customers')">
+                    <i class="fas fa-users"></i> Customers
+                </button>
+                <button class="admin-tab" onclick="showTab('analytics')">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="admin-tab-content">
+                <!-- Orders Tab -->
+                <div id="orders-tab" class="tab-content active">
+                    <div class="tab-header">
+                        <h2>Orders Management</h2>
+                        <div class="tab-actions">
+                            <input type="text" id="orderSearch" placeholder="Search orders...">
+                            <button onclick="searchOrders()">Search</button>
+                        </div>
+                    </div>
+                    <div class="orders-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Products</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Orders will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Products Tab -->
+                <div id="products-tab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Products Management</h2>
+                        <div class="tab-actions">
+                            <input type="text" id="productSearch" placeholder="Search products...">
+                            <button onclick="addNewProduct()">Add Product</button>
+                        </div>
+                    </div>
+                    <div class="admin-products-grid" id="adminProductsGrid">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Customers Tab -->
+                <div id="customers-tab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Customers Management</h2>
+                        <div class="tab-actions">
+                            <input type="text" id="customerSearch" placeholder="Search customers...">
+                            <button onclick="searchCustomers()">Search</button>
+                        </div>
+                    </div>
+                    <div class="customers-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Total Orders</th>
+                                    <th>Total Spent</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTableBody">
+                                <!-- Customers will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div id="analytics-tab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Analytics Dashboard</h2>
+                    </div>
+                    <div class="analytics-charts">
+                        <div class="chart-container">
+                            <h3>Sales Overview</h3>
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                                <p>Sales chart will appear here</p>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Top Products</h3>
+                            <div id="topProductsList">
+                                <!-- Top products will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Admin Dashboard JavaScript
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        let customers = JSON.parse(localStorage.getItem('customers')) || [];
+        let products = window.products || [];
+
+        // Initialize admin dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            loadOrders();
+            loadProducts();
+            loadCustomers();
+            loadAnalytics();
+        });
+
+        // Load dashboard statistics
+        function loadDashboardData() {
+            document.getElementById('totalOrders').textContent = orders.length;
+            document.getElementById('totalCustomers').textContent = customers.length;
+            
+            const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
+            document.getElementById('totalRevenue').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+            document.getElementById('totalProducts').textContent = products.length;
+        }
+
+        // Load orders
+        function loadOrders() {
+            const ordersTableBody = document.getElementById('ordersTableBody');
+            ordersTableBody.innerHTML = '';
+
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>#${order.id}</td>
+                    <td>${order.customer}</td>
+                    <td>${order.items.length} items</td>
+                    <td>₹${order.total.toLocaleString('en-IN')}</td>
+                    <td>
+                        <select class="status-select" onchange="updateOrderStatus(${order.id}, this.value)">
+                            <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
+                            <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>Processing</option>
+                            <option value="shipped" ${order.status === 'shipped' ? 'selected' : ''}>Shipped</option>
+                            <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                        </select>
+                    </td>
+                    <td>${new Date(order.date).toLocaleDateString()}</td>
+                    <td>
+                        <button class="action-btn" onclick="viewOrder(${order.id})">View</button>
+                        <button class="action-btn delete" onclick="deleteOrder(${order.id})">Delete</button>
+                    </td>
+                `;
+                ordersTableBody.appendChild(row);
+            });
+        }
+
+        // Load products
+        function loadProducts() {
+            const adminProductsGrid = document.getElementById('adminProductsGrid');
+            adminProductsGrid.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'admin-product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>₹${product.price.toLocaleString('en-IN')}</p>
+                        <p>${product.category}</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="editProduct(${product.id})">Edit</button>
+                        <button class="action-btn delete" onclick="deleteProduct(${product.id})">Delete</button>
+                    </div>
+                `;
+                adminProductsGrid.appendChild(productCard);
+            });
+        }
+
+        // Load customers
+        function loadCustomers() {
+            const customersTableBody = document.getElementById('customersTableBody');
+            customersTableBody.innerHTML = '';
+
+            // Generate sample customers if none exist
+            if (customers.length === 0) {
+                customers = [
+                    { name: 'John Doe', email: 'john@example.com', phone: '9876543210', totalOrders: 3, totalSpent: 15000, joined: '2024-01-15' },
+                    { name: 'Jane Smith', email: 'jane@example.com', phone: '9876543211', totalOrders: 5, totalSpent: 25000, joined: '2024-01-20' }
+                ];
+            }
+
+            customers.forEach(customer => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${customer.name}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.phone}</td>
+                    <td>${customer.totalOrders}</td>
+                    <td>₹${customer.totalSpent.toLocaleString('en-IN')}</td>
+                    <td>${customer.joined}</td>
+                    <td>
+                        <button class="action-btn" onclick="viewCustomer('${customer.email}')">View</button>
+                        <button class="action-btn delete" onclick="deleteCustomer('${customer.email}')">Delete</button>
+                    </td>
+                `;
+                customersTableBody.appendChild(row);
+            });
+        }
+
+        // Load analytics
+        function loadAnalytics() {
+            const topProductsList = document.getElementById('topProductsList');
+            topProductsList.innerHTML = '';
+
+            // Show top 5 products
+            const topProducts = products.slice(0, 5);
+            topProducts.forEach((product, index) => {
+                const productItem = document.createElement('div');
+                productItem.className = 'top-product-item';
+                productItem.innerHTML = `
+                    <span>${index + 1}. ${product.name}</span>
+                    <span>₹${product.price.toLocaleString('en-IN')}</span>
+                `;
+                topProductsList.appendChild(productItem);
+            });
+        }
+
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.admin-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Order management functions
+        function updateOrderStatus(orderId, newStatus) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = newStatus;
+                localStorage.setItem('orders', JSON.stringify(orders));
+                showNotification('Order status updated successfully!');
+            }
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm('Are you sure you want to delete this order?')) {
+                orders = orders.filter(o => o.id !== orderId);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                loadOrders();
+                loadDashboardData();
+                showNotification('Order deleted successfully!');
+            }
+        }
+
+        function viewOrder(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                alert(`Order Details:\n\nID: #${order.id}\nCustomer: ${order.customer}\nTotal: ₹${order.total.toLocaleString('en-IN')}\nStatus: ${order.status}\nItems: ${order.items.length}`);
+            }
+        }
+
+        // Product management functions
+        function editProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                alert(`Product Details:\n\nName: ${product.name}\nPrice: ₹${product.price}\nCategory: ${product.category}\nDescription: ${product.description}`);
+            }
+        }
+
+        function deleteProduct(productId) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                products = products.filter(p => p.id !== productId);
+                loadProducts();
+                loadDashboardData();
+                showNotification('Product deleted successfully!');
+            }
+        }
+
+        function addNewProduct() {
+            alert('Add Product feature coming soon!');
+        }
+
+        // Customer management functions
+        function viewCustomer(email) {
+            const customer = customers.find(c => c.email === email);
+            if (customer) {
+                alert(`Customer Details:\n\nName: ${customer.name}\nEmail: ${customer.email}\nPhone: ${customer.phone}\nTotal Orders: ${customer.totalOrders}\nTotal Spent: ₹${customer.totalSpent.toLocaleString('en-IN')}`);
+            }
+        }
+
+        function deleteCustomer(email) {
+            if (confirm('Are you sure you want to delete this customer?')) {
+                customers = customers.filter(c => c.email !== email);
+                localStorage.setItem('customers', JSON.stringify(customers));
+                loadCustomers();
+                loadDashboardData();
+                showNotification('Customer deleted successfully!');
+            }
+        }
+
+        // Search functions
+        function searchOrders() {
+            const searchTerm = document.getElementById('orderSearch').value.toLowerCase();
+            const filteredOrders = orders.filter(order => 
+                order.customer.toLowerCase().includes(searchTerm) ||
+                order.id.toString().includes(searchTerm)
+            );
+            // Reload orders with filtered results
+            loadOrders();
+        }
+
+        function searchCustomers() {
+            const searchTerm = document.getElementById('customerSearch').value.toLowerCase();
+            const filteredCustomers = customers.filter(customer => 
+                customer.name.toLowerCase().includes(searchTerm) ||
+                customer.email.toLowerCase().includes(searchTerm)
+            );
+            // Reload customers with filtered results
+            loadCustomers();
+        }
+
+        // Utility functions
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'admin-notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4CAF50;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                z-index: 10000;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function logoutAdmin() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>
                     </div>
                     <div class="stat-info">
                         <h3 id="totalRevenue">₹0</h3>
