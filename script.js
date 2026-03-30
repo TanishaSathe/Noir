@@ -401,6 +401,199 @@ const products = [
         image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
         category: "women",
         description: "Stylish midi skirt"
+    },
+    // Additional 24 products
+    {
+        id: 7,
+        name: "Silk Blouse",
+        price: 4299,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Luxury silk blouse"
+    },
+    {
+        id: 8,
+        name: "Denim Jacket",
+        price: 5499,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Classic denim jacket"
+    },
+    {
+        id: 9,
+        name: "Floral Dress",
+        price: 3799,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Beautiful floral dress"
+    },
+    {
+        id: 10,
+        name: "Leather Pants",
+        price: 6999,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Stylish leather pants"
+    },
+    {
+        id: 11,
+        name: "Cashmere Sweater",
+        price: 7999,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Premium cashmere sweater"
+    },
+    {
+        id: 12,
+        name: "Cocktail Dress",
+        price: 8499,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Elegant cocktail dress"
+    },
+    {
+        id: 13,
+        name: "Pencil Skirt",
+        price: 3299,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Professional pencil skirt"
+    },
+    {
+        id: 14,
+        name: "Linen Shirt",
+        price: 2799,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Breathable linen shirt"
+    },
+    {
+        id: 15,
+        name: "Velvet Dress",
+        price: 9299,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Luxury velvet dress"
+    },
+    {
+        id: 16,
+        name: "Wool Coat",
+        price: 12999,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Warm wool coat"
+    },
+    {
+        id: 17,
+        name: "Silk Camisole",
+        price: 2499,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Elegant silk camisole"
+    },
+    {
+        id: 18,
+        name: "Trench Coat",
+        price: 10999,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Classic trench coat"
+    },
+    {
+        id: 19,
+        name: "Maxi Dress",
+        price: 4599,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Flowing maxi dress"
+    },
+    {
+        id: 20,
+        name: "Cotton T-Shirt",
+        price: 1599,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Comfortable cotton t-shirt"
+    },
+    {
+        id: 21,
+        name: "Wool Blazer",
+        price: 7899,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Professional wool blazer"
+    },
+    {
+        id: 22,
+        name: "Silk Scarf",
+        price: 1999,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Luxury silk scarf"
+    },
+    {
+        id: 23,
+        name: "Lace Dress",
+        price: 6899,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Delicate lace dress"
+    },
+    {
+        id: 24,
+        name: "Corduroy Pants",
+        price: 3999,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Vintage corduroy pants"
+    },
+    {
+        id: 25,
+        name: "Satin Blouse",
+        price: 3599,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Smooth satin blouse"
+    },
+    {
+        id: 26,
+        name: "Wool Cardigan",
+        price: 5299,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Cozy wool cardigan"
+    },
+    {
+        id: 27,
+        name: "Chiffon Dress",
+        price: 4199,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Light chiffon dress"
+    },
+    {
+        id: 28,
+        name: "Leather Jacket",
+        price: 11999,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Classic leather jacket"
+    },
+    {
+        id: 29,
+        name: "Silk Dress",
+        price: 7299,
+        image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
+        category: "women",
+        description: "Elegant silk dress"
+    },
+    {
+        id: 30,
+        name: "Cotton Dress",
+        price: 2899,
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+        category: "women",
+        description: "Comfortable cotton dress"
     }
 ];
 
