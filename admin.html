@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script>
+</head>
+<body class="admin-body">
+    <script>
         // Simple Admin Authentication
-        function checkAdminAccess() {
+        (function() {
             const isLoggedIn = localStorage.getItem('adminLoggedIn');
             if (!isLoggedIn) {
                 // Show login prompt
@@ -23,20 +25,11 @@
                 } else {
                     alert('Invalid credentials! Redirecting to home...');
                     window.location.href = 'index.html';
-                    return false;
+                    return;
                 }
             }
-            return true;
-        }
-        
-        // Check access on page load
-        if (!checkAdminAccess()) {
-            // Stop loading if access denied
-            document.body.innerHTML = '<h1>Access Denied</h1>';
-        }
+        })();
     </script>
-</head>
-<body class="admin-body">
     <!-- Admin Navigation -->
     <nav class="admin-nav">
         <div class="admin-container">
