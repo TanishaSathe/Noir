@@ -1528,175 +1528,187 @@ body {
     }
 }
 
-/* Enhanced Turn Black Theme - More Aggressive Dark Style */
+/* Turn Black Functionality & Minimalist Style */
 body {
-    background: #000;
-    color: #fff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #000;
+    background: #fff;
     margin: 0;
     padding: 0;
 }
 
-/* Remove all white backgrounds */
-* {
-    box-sizing: border-box;
-}
-
-/* Main sections - pure black */
-.hero, .products, .search-section, .footer, .login-section, .product-page {
-    background: #000 !important;
-    color: #fff !important;
-}
-
-/* Navigation - ultra dark */
+/* Navigation - Turn Black Minimalist Style */
 .navbar {
-    background: #000 !important;
-    border-bottom: 1px solid #111 !important;
-    box-shadow: none !important;
+    background: #fff;
+    border-bottom: 1px solid #000;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: none;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nav-logo h2 {
-    color: #fff !important;
-    font-weight: 300 !important;
-    letter-spacing: 2px !important;
+    color: #000;
+    font-weight: 300;
+    font-size: 24px;
+    letter-spacing: 2px;
 }
 
+/* Turn Black Minimalist Navigation Links */
 .nav-link {
-    color: #fff !important;
-    font-weight: 200 !important;
-    transition: all 0.3s ease !important;
+    color: #000;
+    text-decoration: none;
+    font-weight: 200;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    padding: 5px 0;
 }
 
 .nav-link:hover {
-    color: #666 !important;
-    background: transparent !important;
+    color: #666;
+    background: transparent;
 }
 
-/* Hamburger - Turn Black style */
-.hamburger .bar {
-    background: #fff !important;
-}
-
-/* Product cards - ultra minimal */
+/* Product Cards - Turn Black Minimalist */
 .product-card {
-    background: #000 !important;
-    border: 1px solid #111 !important;
-    border-radius: 0 !important;
-    transition: all 0.3s ease !important;
-    box-shadow: none !important;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    overflow: hidden;
 }
 
 .product-card:hover {
-    border-color: #333 !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 2px 10px rgba(255,255,255,0.05) !important;
+    transform: translateY(-2px);
+    border-color: #333;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .product-info h3 {
-    color: #fff !important;
-    font-weight: 300 !important;
+    color: #000;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .product-info p {
-    color: #888 !important;
+    color: #666;
+    font-weight: 400;
 }
 
-/* Buttons - Turn Black minimal */
+/* Buttons - Turn Black Style */
 .add-to-cart, .login-btn, .search-btn-large, .sizes button {
-    background: transparent !important;
-    color: #fff !important;
-    border: 1px solid #fff !important;
-    border-radius: 0 !important;
-    padding: 12px 20px !important;
-    font-weight: 200 !important;
-    letter-spacing: 1px !important;
-    transition: all 0.3s ease !important;
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+    padding: 12px 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .add-to-cart:hover, .login-btn:hover, .search-btn-large:hover, .sizes button:hover {
-    background: #fff !important;
-    color: #000 !important;
-    border-color: #fff !important;
+    background: #fff;
+    color: #000;
+    border-color: #000;
 }
 
-/* Search - ultra dark */
+/* Search - Turn Black Minimalist */
 .search-input-large {
-    background: #000 !important;
-    border: 1px solid #111 !important;
-    color: #fff !important;
-    border-radius: 0 !important;
-    padding: 15px !important;
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 0;
+    padding: 15px;
+    font-weight: 200;
+    letter-spacing: 1px;
 }
 
 .search-input-large::placeholder {
-    color: #666 !important;
+    color: #999;
 }
 
 .search-input-large:focus {
-    border-color: #333 !important;
-    outline: none !important;
+    border-color: #333;
+    outline: none;
 }
 
-/* Cart modal - Turn Black */
+/* Cart Modal - Turn Black Style */
 .cart-modal {
-    background: rgba(0,0,0,0.95) !important;
-    color: #fff !important;
+    background: rgba(255,255,255,0.95);
+    color: #000;
 }
 
 .modal-content {
-    background: #000 !important;
-    border: 1px solid #111 !important;
-    border-radius: 0 !important;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
 }
 
 .close {
-    color: #fff !important;
+    color: #000;
+    font-size: 24px;
 }
 
-/* Footer - ultra minimal */
+/* Footer - Turn Black Minimalist */
 .footer {
-    background: #000 !important;
-    border-top: 1px solid #111 !important;
-    color: #fff !important;
+    background: #fff;
+    border-top: 1px solid #000;
+    color: #000;
 }
 
 .footer h3, .footer h4 {
-    color: #fff !important;
-    font-weight: 300 !important;
-    letter-spacing: 1px !important;
+    color: #000;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .footer a {
-    color: #888 !important;
-    transition: color 0.3s ease !important;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .footer a:hover {
-    color: #fff !important;
+    color: #000;
 }
 
-/* Remove all rounded corners and shadows */
-* {
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-
-/* Text - Turn Black typography */
+/* Turn Black Typography */
 h1, h2, h3, h4, h5, h6 {
-    color: #fff !important;
-    font-weight: 300 !important;
-    letter-spacing: 1px !important;
+    color: #000;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
-p, span, div {
-    color: #ccc !important;
-}
-
-/* Section titles */
 .section-title {
-    color: #fff !important;
-    font-weight: 200 !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
+    color: #000;
+    font-weight: 200;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Turn Black Minimalist Transitions */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Remove unnecessary decorations */
+.product-card, .modal-content, .search-input-large {
+    border-radius: 0;
 }
 @media (max-width: 360px) {
     .product-grid {
