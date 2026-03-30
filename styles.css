@@ -194,36 +194,80 @@ body {
     text-transform: none !important;
     color: #000 !important;
 }
-/* Hamburger Menu - Completely Removed */
+/* Hamburger Menu - Show on small screens */
 .hamburger {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
 }
 
-.hamburger-menu {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background: #000;
+    margin: 3px 0;
+    transition: 0.3s;
 }
 
-/* Remove all hamburger-related styles */
+/* Show hamburger on mobile and tablet */
 @media (max-width: 768px) {
     .hamburger {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
+        display: flex !important;
     }
-}
+    
+    .nav-menu {
+        display: none;
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+        padding: 20px 0;
+        z-index: 999;
+        border-top: 1px solid #000;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+        display: flex !important;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
 
-@media (max-width: 480px) {
-    .hamburger {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Hide navigation items by default on mobile */
+    .nav-menu .nav-item {
+        display: none;
+    }
+    
+    /* Show all navigation items when menu is active */
+    .nav-menu.active .nav-item {
+        display: block !important;
+        margin: 10px 0;
+    }
+    
+    /* Keep hamburger always visible */
+    .nav-menu .nav-item:last-child {
+        display: flex !important;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
     }
 }
 
@@ -1439,28 +1483,35 @@ body {
     }
 }
 
-/* Force mobile product images to be larger and extend to edges */
+/* Fix mobile product images - no more cutting from sides */
 @media (max-width: 480px) {
-    .product-grid .product-card img {
-        height: 280px !important;
-        width: 100% !important;
-        object-fit: cover !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
     .product-grid {
-        padding: 0 2px !important;
-        gap: 4px !important;
+        padding: 0 10px !important;
+        gap: 15px !important;
+        margin: 0 !important;
     }
     
-    .product-grid .product-card {
-        border: none !important;
+    .product-card {
+        border: 1px solid #000 !important;
         border-radius: 0 !important;
         margin: 0 !important;
         padding: 0 !important;
         overflow: hidden !important;
+        width: 100% !important;
+    }
+    
+    .product-card img {
+        width: 100% !important;
+        height: 250px !important;
+        object-fit: cover !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+    
+    .product-info {
+        padding: 15px !important;
     }
 }
 /* AGGRESSIVE MOBILE FIXES - Override everything */
