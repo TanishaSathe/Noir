@@ -1528,111 +1528,175 @@ body {
     }
 }
 
-/* Turn Black Theme Enhancements */
+/* Enhanced Turn Black Theme - More Aggressive Dark Style */
 body {
     background: #000;
     color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
-/* Dark theme for main sections */
-.hero, .products, .footer {
-    background: #000;
-    color: #fff;
+/* Remove all white backgrounds */
+* {
+    box-sizing: border-box;
 }
 
-/* Navigation - Turn Black style */
+/* Main sections - pure black */
+.hero, .products, .search-section, .footer, .login-section, .product-page {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+/* Navigation - ultra dark */
 .navbar {
-    background: #000;
-    border-bottom: 1px solid #333;
+    background: #000 !important;
+    border-bottom: 1px solid #111 !important;
+    box-shadow: none !important;
 }
 
 .nav-logo h2 {
-    color: #fff;
+    color: #fff !important;
+    font-weight: 300 !important;
+    letter-spacing: 2px !important;
 }
 
 .nav-link {
     color: #fff !important;
-    transition: all 0.3s ease;
+    font-weight: 200 !important;
+    transition: all 0.3s ease !important;
 }
 
 .nav-link:hover {
     color: #666 !important;
+    background: transparent !important;
 }
 
-/* Product cards - Turn Black style */
+/* Hamburger - Turn Black style */
+.hamburger .bar {
+    background: #fff !important;
+}
+
+/* Product cards - ultra minimal */
 .product-card {
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 0;
-    transition: all 0.3s ease;
+    background: #000 !important;
+    border: 1px solid #111 !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
 }
 
 .product-card:hover {
-    border-color: #666;
-    transform: translateY(-2px);
+    border-color: #333 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 10px rgba(255,255,255,0.05) !important;
 }
 
 .product-info h3 {
-    color: #fff;
+    color: #fff !important;
+    font-weight: 300 !important;
 }
 
 .product-info p {
-    color: #ccc;
+    color: #888 !important;
 }
 
-/* Buttons - Turn Black style */
-.add-to-cart, .login-btn, .search-btn-large {
-    background: #fff;
-    color: #000;
-    border: 1px solid #fff;
-    transition: all 0.3s ease;
+/* Buttons - Turn Black minimal */
+.add-to-cart, .login-btn, .search-btn-large, .sizes button {
+    background: transparent !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+    border-radius: 0 !important;
+    padding: 12px 20px !important;
+    font-weight: 200 !important;
+    letter-spacing: 1px !important;
+    transition: all 0.3s ease !important;
 }
 
-.add-to-cart:hover, .login-btn:hover, .search-btn-large:hover {
-    background: #000;
-    color: #fff;
-    border-color: #666;
+.add-to-cart:hover, .login-btn:hover, .search-btn-large:hover, .sizes button:hover {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #fff !important;
 }
 
-/* Search input - Turn Black style */
+/* Search - ultra dark */
 .search-input-large {
-    background: #111;
-    border: 1px solid #333;
-    color: #fff;
+    background: #000 !important;
+    border: 1px solid #111 !important;
+    color: #fff !important;
+    border-radius: 0 !important;
+    padding: 15px !important;
 }
 
 .search-input-large::placeholder {
-    color: #666;
+    color: #666 !important;
 }
 
-/* Cart modal - Turn Black style */
+.search-input-large:focus {
+    border-color: #333 !important;
+    outline: none !important;
+}
+
+/* Cart modal - Turn Black */
 .cart-modal {
-    background: #000;
-    color: #fff;
+    background: rgba(0,0,0,0.95) !important;
+    color: #fff !important;
 }
 
 .modal-content {
-    background: #111;
-    border: 1px solid #333;
+    background: #000 !important;
+    border: 1px solid #111 !important;
+    border-radius: 0 !important;
 }
 
-/* Footer - Turn Black style */
+.close {
+    color: #fff !important;
+}
+
+/* Footer - ultra minimal */
 .footer {
-    background: #000;
-    border-top: 1px solid #333;
+    background: #000 !important;
+    border-top: 1px solid #111 !important;
+    color: #fff !important;
 }
 
 .footer h3, .footer h4 {
-    color: #fff;
+    color: #fff !important;
+    font-weight: 300 !important;
+    letter-spacing: 1px !important;
 }
 
 .footer a {
-    color: #ccc;
-    transition: color 0.3s ease;
+    color: #888 !important;
+    transition: color 0.3s ease !important;
 }
 
 .footer a:hover {
-    color: #fff;
+    color: #fff !important;
+}
+
+/* Remove all rounded corners and shadows */
+* {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Text - Turn Black typography */
+h1, h2, h3, h4, h5, h6 {
+    color: #fff !important;
+    font-weight: 300 !important;
+    letter-spacing: 1px !important;
+}
+
+p, span, div {
+    color: #ccc !important;
+}
+
+/* Section titles */
+.section-title {
+    color: #fff !important;
+    font-weight: 200 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
 }
 @media (max-width: 360px) {
     .product-grid {
