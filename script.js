@@ -360,15 +360,19 @@ const products = [
         price: 3499,
         image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
         category: "women",
-        description: "Elegant summer dress"
-        },
+        description: "Elegant summer dress perfect for beach parties and casual outings",
+        material: "Cotton Blend",
+        sizes: ["S", "M", "L", "XL"]
+    },
     {
         id: 2,
         name: "Elegant Blouse",
         price: 2999,
         image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
         category: "women",
-        description: "Stylish office blouse"
+        description: "Stylish office blouse perfect for professional meetings",
+        material: "Silk Blend",
+        sizes: ["XS", "S", "M", "L"]
     },
     {
         id: 3,
@@ -376,7 +380,9 @@ const products = [
         price: 4999,
         image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
         category: "women",
-        description: "Warm wool sweater"
+        description: "Warm wool sweater perfect for winter days",
+        material: "Merino Wool",
+        sizes: ["S", "M", "L", "XL", "XXL"]
     },
     {
         id: 4,
@@ -384,7 +390,9 @@ const products = [
         price: 9499,
         image: "https://images.unsplash.com/photo-1594633312681-1dfe5d97dccd1?w=400",
         category: "women",
-        description: "Elegant evening gown"
+        description: "Elegant evening gown for special occasions",
+        material: "Satin",
+        sizes: ["S", "M", "L"]
     },
     {
         id: 5,
@@ -695,19 +703,29 @@ function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
 
+    // Generate size options
+    const sizeOptions = product.sizes ? product.sizes.map(size => 
+        `<button class="size-option" onclick="event.stopPropagation()">${size}</button>`
+    ).join('') : '';
+
     card.innerHTML = `
         <img src="${product.image}" alt="${product.name}">
         <div class="product-info">
             <h3>${product.name}</h3>
-            <p>${product.description}</p>
+            <div class="product-material">${product.material || 'Premium Fabric'}</div>
+            <div class="product-description">${product.description}</div>
+            <div class="product-sizes">${sizeOptions}</div>
             <div class="product-price">₹${product.price.toFixed(2)}</div>
         </div>
     `;
 
     // ✅ ADD CLICK HERE (IMPORTANT)
-    card.onclick = () => {
-        localStorage.setItem("selectedProduct", JSON.stringify(product));
-        window.location.href = "product.html";
+    card.onclick = (e) => {
+        // Don't navigate if clicking on size buttons
+        if (!e.target.classList.contains('size-option')) {
+            localStorage.setItem("selectedProduct", JSON.stringify(product));
+            window.location.href = "product.html";
+        }
     };
 
     return card;
